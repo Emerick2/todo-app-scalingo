@@ -9,18 +9,18 @@ const app = express();
 app.use(cors()); 
 app.use(express.json()); 
 // app.use(express.urlencoded({ extended: true })); 
-// app.use(express.static('src')); 
+// app.use(express.static('public')); 
 
-// app.get('/accueil', function(req, res) {
-//   res.sendFile(path.join(__dirname, 'src', 'accueil.html'));
+// app.get('/index', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // });
 
 // app.get('/', function (req, res) {
-//   res.redirect('/accueil');
+//   res.redirect('/index');
 // });
-app.get('/', (req, res) => {
-    res.json({ message: "Bienvenue sur le site !" });
-});
+// app.get('/', (req, res) => {
+//     res.json({ message: "Bienvenue sur le site !" });
+// });
 
 app.get('/api/health', (req, res) => {
     res.json({ 

@@ -34,7 +34,6 @@ function AfficherLesTaches(){
     bloque.innerHTML = "";
     for (let i = 0; i < listeTache.length; i++) {
         bloque.innerHTML += "<p>"+listeTache[i]+"</p>";
-        
     }
 }
 
