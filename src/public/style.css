@@ -1,0 +1,11 @@
+body{
+    background-color: azure;
+    text-align: center;
+    color:rgb(92, 92, 92);
+    margin: 0px;
+}
+
+main{
+    margin-left: 10px;
+    margin-right: 10px;
+}
