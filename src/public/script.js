@@ -1,4 +1,4 @@
-listeTache = []
+let listeTache = []
 
 async function checkHealth() {
     try {
@@ -17,6 +17,7 @@ function UtilisateurConnecter(){
 
 function AjouterUneTache(tache){//tache est un string
     listeTache.push(tache);
+    AfficherLesTaches();
 }
 
 function RetirerUneTache(tache){//tache est un string
@@ -25,22 +26,23 @@ function RetirerUneTache(tache){//tache est un string
             listeTache.splice(i, 1);
         }
     }
+    AfficherLesTaches();
+}
+
+function AfficherLesTaches(){
+    const bloque = document.getElementById("listeDesTache");
+    bloque.innerHTML = "";
+    for (let i = 0; i < listeTache.length; i++) {
+        bloque.innerHTML += "<p>"+listeTache[i]+"</p>";
+        
+    }
 }
 
 document.getElementById('ajouterTache').addEventListener('submit', function(e) {
-    e.preventDefault(); 
-
-    fetch('/name-form', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('reponse').textContent = `${data}`;
-    });
+    e.preventDefault();
+    const messageSaisi = document.getElementById('message').value;
+    console.log(messageSaisi);
+    AjouterUneTache(messageSaisi);
 });
 
 
