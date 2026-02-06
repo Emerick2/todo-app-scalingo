@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TODO App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-container">
+      <h1>TODO App</h1>
+
+      <!-- Statut de connexion à l'API -->
+      <p id="api-status">Statut API : inconnu</p>
+
+      <!-- Formulaire d'ajout de tâche -->
+      <form id="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="Ajouter une tâche..."
+          required
+        />
+        <button type="submit">Ajouter</button>
+      </form>
+
+      <!-- Zone d'affichage des tâches -->
+      <ul id="todo-list"></ul>
+
+      <!-- Footer -->
+      <footer>
+        <small>Projet TODO App - Zion</small>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
