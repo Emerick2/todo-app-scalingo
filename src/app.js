@@ -11,6 +11,10 @@ dotenv.config();
 // 3) Création de l'application Express
 const app = express();
 
+
+// Pour servir les fichiers du dossier "public"
+app.use(express.static('public'));
+
 // 4) Middlewares globaux
 // Permet de lire le JSON dans le corps des requêtes (req.body)
 app.use(express.json());
