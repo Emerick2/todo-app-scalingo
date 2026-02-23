@@ -6,9 +6,15 @@
         <title>TODO App</title>
     </head>
     <body>
+        <template id="template-tache">   
+            <form id="retirerTache">
+                <p class="laValeurTexte" data-id="0">Le nom</p>
+                <button type="submit">Supprimé</button>
+            </form>
+        </template>
         <main>
             <h1>TODO App</h1>
-            <p>statut de connexion à l'API</p>
+            <p id="statutDeConnexionAPI">statut de connexion à l'API</p>
             <form id="ajouterTache">
                 <input id="message" type="text"> <label>Nom de la tâche</label>
                 <button type="submit">Ajouter</button>

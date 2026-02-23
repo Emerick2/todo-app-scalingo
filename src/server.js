@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const api = require('./api');
 const app = express();
-// const app = require("./app");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
@@ -10,12 +9,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', api);
 
-app.get('/index', function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/', function (req, res) {
-  res.redirect('/index');
+app.get('/index', function (req, res) {
+  res.redirect('/');
 });
 
 const PORT = process.env.PORT || 3000;
