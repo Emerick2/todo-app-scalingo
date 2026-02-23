@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const api = require('./api');
 const app = express();
+// const app = require("./app");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
@@ -17,6 +18,7 @@ app.get('/', function (req, res) {
   res.redirect('/index');
 });
 
-app.listen(3000, () => console.log('Serveur actif sur le port 3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Serveur actif sur le port ${PORT}`));
 
 // on y accède en fesant : http://localhost:3000
