@@ -1,4 +1,4 @@
-let listeTache = []
+let listeTache = JSON.parse(localStorage.getItem('taches')) || []
 
 async function checkHealth() {
     try {
@@ -17,6 +17,7 @@ function UtilisateurConnecter(){
 
 function AjouterUneTache(tache){//tache est un string
     listeTache.push(tache);
+    localStorage.setItem('taches', JSON.stringify(listeTache));
     AfficherLesTaches();
 }
 
@@ -26,6 +27,7 @@ function RetirerUneTache(tache){//tache est un string
             listeTache.splice(i, 1);
         }
     }
+    localStorage.setItem('taches', JSON.stringify(listeTache));
     AfficherLesTaches();
 }
 
@@ -44,7 +46,5 @@ document.getElementById('ajouterTache').addEventListener('submit', function(e) {
     AjouterUneTache(messageSaisi);
 });
 
-
-
-
 checkHealth();
+AfficherLesTaches();
