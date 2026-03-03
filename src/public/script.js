@@ -65,4 +65,5 @@ document.getElementById('ajouterTache').addEventListener('submit', function(e) {
 });
 
 checkHealth();
+setInterval(checkHealth, 5000);
 AfficherLesTaches();

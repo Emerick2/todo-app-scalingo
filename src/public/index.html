@@ -9,16 +9,16 @@
     <body>
         <template id="template-tache">   
             <form class="retirerTache">
-                <p class="laValeurTexte" data-id="0">Le nom</p>
-                <button type="submit">Supprimé</button>
+                <p class="laValeurTexte" data-id="0"></p>
+                <button class="buttonDelet" type="submit"></button>
             </form>
         </template>
         <main>
             <h1>TODO App</h1>
             <p id="statutDeConnexionAPI">statut de connexion à l'API</p>
             <form id="ajouterTache">
-                <input id="message" type="text"> <label>Nom de la tâche</label>
-                <button type="submit">Ajouter</button>
+                <input id="message" type="text" placeholder="Nom de la tâche">
+                <button class="buttonAdd" type="submit">Ajouter</button>
             </form>
             <div id="listeDesTache">
 
