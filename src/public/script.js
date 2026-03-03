@@ -1,9 +1,11 @@
 let listeTache = JSON.parse(localStorage.getItem('taches')) || []
 
+const apiUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port || (window.location.protocol === 'https' ? 443 : 80)}`;
+
 async function checkHealth() {
     const statutDeConnexionAPITexte = document.getElementById("statutDeConnexionAPI");
     try {
-        const response = await fetch('http://localhost:3000/api/health');
+        const response = await fetch(`${apiUrl}/api/health`);
         const data = await response.json();
         console.log("Statut de l'API :", data.status);
         console.log("Données complètes :", data);
