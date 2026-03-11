@@ -1,7 +1,20 @@
-let listeTache = JSON.parse(localStorage.getItem('taches')) || []
-
-// const apiUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port || (window.location.protocol === 'https' ? 443 : 80)}`;
 const apiUrl = `${window.location.origin}`;
+const API_TODOS = `${apiUrl}/api/todos`;
+
+let listeTache = [];
+
+async function ChargerDepuisServeur() {
+    try {
+        const response = await fetch(API_TODOS);
+        const result = await response.json();
+        if (result.success) {
+            listeTache = result.data; // (id, title, completed)
+            AfficherLesTaches();
+        }
+    } catch (error) {
+        console.error("Erreur chargement :", error);
+    }
+}
 
 async function checkHealth() {
     const statutDeConnexionAPITexte = document.getElementById("statutDeConnexionAPI");
@@ -22,18 +35,35 @@ async function checkHealth() {
     }
 }
 
-function AjouterUneTache(tache){//tache est un string
-    tache = tache.trim();
-    if (tache === "") return;
-    listeTache.push(tache);
-    localStorage.setItem('taches', JSON.stringify(listeTache));
-    AfficherLesTaches();
+async function AjouterUneTache(titre) {
+    titre = titre.trim();
+    if (titre === "") return;
+
+    try {
+        const response = await fetch(API_TODOS, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: titre })
+        });
+        if (response.ok) {
+            await ChargerDepuisServeur();
+        }
+    } catch (error) {
+        console.error("Erreur ajout :", error);
+    }
 }
 
-function RetirerUneTache(tache){//tache est un int
-    listeTache.splice(tache, 1);
-    localStorage.setItem('taches', JSON.stringify(listeTache));
-    AfficherLesTaches();
+async function RetirerUneTache(id) {
+    try {
+        const response = await fetch(`${API_TODOS}/${id}`, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            await ChargerDepuisServeur();
+        }
+    } catch (error) {
+        console.error("Erreur suppression :", error);
+    }
 }
 
 function AfficherLesTaches(){
@@ -44,9 +74,8 @@ function AfficherLesTaches(){
         const form = clone.querySelector('form');
         const texteElement = clone.querySelector('.laValeurTexte');
 
-        texteElement.textContent = listeTache[i];
-        const long = i;
-        const maValeurId = long;
+        texteElement.textContent = listeTache[i].title;
+        const maValeurId = listeTache[i].id;
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -61,12 +90,11 @@ document.getElementById('ajouterTache').addEventListener('submit', function(e) {
     e.preventDefault();
     const input = document.getElementById('message');
     if (input != null){
-        const messageSaisi = input.value;
-        AjouterUneTache(messageSaisi);
+        AjouterUneTache(input.value);
         input.value = "";
     }
 });
 
 checkHealth();
 setInterval(checkHealth, 5000);
-AfficherLesTaches();
+ChargerDepuisServeur();
