@@ -1,6 +1,7 @@
 let listeTache = JSON.parse(localStorage.getItem('taches')) || []
 
-const apiUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port || (window.location.protocol === 'https' ? 443 : 80)}`;
+// const apiUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port || (window.location.protocol === 'https' ? 443 : 80)}`;
+const apiUrl = `${window.location.origin}`;
 
 async function checkHealth() {
     const statutDeConnexionAPITexte = document.getElementById("statutDeConnexionAPI");
