@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const api = require('./api');
 const { initDatabase } = require('./models/db');
+const todoRoutes = require('./routes/todos');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,8 +11,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/api', api);
+app.use('/api/todos', todoRoutes);
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
