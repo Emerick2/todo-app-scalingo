@@ -1,0 +1,33 @@
+# Dans GitHub → Settings → Secrets and variables → Actions il faut ajouter le secret "SCALINGO_PROD_APP". Je ne l'es pas comme c'est la production et que je fait la pré-production.
+
+name: Deploy to Production
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Scalingo CLI
+        run: |
+          curl -O https://cli-artifacts.scalingo.com/release/scalingo_latest_linux_amd64.tar.gz
+          tar -zxvf scalingo_latest_linux_amd64.tar.gz
+          mv scalingo /usr/local/bin/
+
+      - name: Deploy to Scalingo Production
+        env:
+          SCALINGO_API_TOKEN: ${{ secrets.SCALINGO_API_TOKEN }}
+        run: |
+          scalingo login --api-token $SCALINGO_API_TOKEN
+          # Configure la remote de production et déploie le tag
+          scalingo --app ${{ secrets.SCALINGO_PROD_APP }} git-setup --remote scalingo-prod
+          git push scalingo-prod ${{ github.ref_name }}:main --force
