@@ -66,21 +66,50 @@ async function RetirerUneTache(id) {
     }
 }
 
+async function DireQueLaTacheEstFini(id, nouvelleValeur) {
+    try {
+        const response = await fetch(`${API_TODOS}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ completed: nouvelleValeur })
+        });
+        if (response.ok) {
+            await ChargerDepuisServeur();
+        }
+    } catch (error) {
+        console.error("Erreur mise à jour :", error);
+    }
+}
+
 function AfficherLesTaches(){
     const block = document.getElementById("listeDesTache");
     block.innerHTML = "";
     for (let i = 0; i < listeTache.length; i++) {
         const clone = document.getElementById('template-tache').content.cloneNode(true);
-        const form = clone.querySelector('form');
+        const form_retirerTache = clone.querySelector('.retirerTache');
+        const form_finiTache = clone.querySelector('.finiTache');
         const texteElement = clone.querySelector('.laValeurTexte');
+        const texteCreatedAt = clone.querySelector('.dateDeLaTache');
 
-        texteElement.textContent = listeTache[i].title;
         const maValeurId = listeTache[i].id;
+        const createdAt = new Date(listeTache[i].created_at).toLocaleDateString('fr-FR');
+        const valeurCompleted = listeTache[i].completed;
+        
+        texteElement.textContent = listeTache[i].title;
+        texteCreatedAt.textContent = createdAt;
+        if (valeurCompleted){
+            clone.querySelector('.tacheEffectuer').style.backgroundColor = "rgb(159, 255, 173)";
+        }
 
-        form.addEventListener('submit', function(e) {
+        form_retirerTache.addEventListener('submit', function(e) {
             e.preventDefault();
             RetirerUneTache(maValeurId);             
-            form.remove();
+            form_retirerTache.remove();
+        });
+
+        form_finiTache.addEventListener('submit', function(e) {
+            e.preventDefault();
+            DireQueLaTacheEstFini(maValeurId, !valeurCompleted);
         });
         block.appendChild(clone);
     }

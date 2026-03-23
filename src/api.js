@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// Exemple de données en mémoire
 let tasks = [];
 
 // Route pour vérifier l'état de l'API

@@ -8,10 +8,17 @@
     </head>
     <body>
         <template id="template-tache">   
-            <form class="retirerTache">
-                <p class="laValeurTexte" data-id="0"></p>
-                <button class="buttonDelet" type="submit"></button>
-            </form>
+            <br>
+            <div class="uneTache">
+                <p class="laValeurTexte" data-id="0">Le titre de la note</p>
+                <p class="dateDeLaTache">23/03/2026</p>
+                <form class="retirerTache">
+                    <button class="buttonDelet" type="submit"></button>
+                </form>
+                <form class="finiTache">
+                    <button class="tacheEffectuer"></button>
+                </form>
+            </div>
         </template>
         <main>
             <h1>TODO App</h1>
@@ -20,9 +27,7 @@
                 <input id="message" type="text" placeholder="Nom de la tâche">
                 <button class="buttonAdd" type="submit">Ajouter</button>
             </form>
-            <div id="listeDesTache">
-
-            </div>
+            <div id="listeDesTache"></div>
         </main>
         <div class="content"></div>
         <footer>

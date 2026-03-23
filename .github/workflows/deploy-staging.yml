@@ -1,0 +1,29 @@
+name: Deploy to Staging
+
+on:
+  push:
+    [cite_start]branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Scalingo CLI
+        run: |
+          curl -O https://cli-artifacts.scalingo.com/release/scalingo_latest_linux_amd64.tar.gz
+          tar -zxvf scalingo_latest_linux_amd64.tar.gz
+          mv scalingo /usr/local/bin/
+
+      - name: Deploy to Scalingo Staging
+        env:
+          SCALINGO_API_TOKEN: ${{ secrets.SCALINGO_API_TOKEN }}
+        run: |
+          scalingo login --api-token $SCALINGO_API_TOKEN
+          scalingo --app ${{ secrets.SCALINGO_STAGING_APP }} git-setup --remote scalingo-staging
+          git push scalingo-staging main --force
