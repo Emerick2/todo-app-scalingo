@@ -15,6 +15,7 @@
 
 1 - Télécharger le dépôt Git.
 2 - `cd todo-app-scalingo`
+3 - `./scalingo -a todo-app-staging --region osc-fr1 db-tunnel SCALINGO_POSTGRESQL_URL`
 3 - `npm run dev`
 
 # Adresses des déploiements :
@@ -45,7 +46,7 @@ Si nous voulons publier une nouvelle version, il faut donc soit le faire manuell
                      |
         +------------+------------+
         |                         |
-  [ TEST FAIL ]           [ TEST SUCCESS ]
+  [ TEST ÉCHOUER ]           [ TEST RÉUSSIE ]
         |                         |
         x (STOP)                  v
                      +---------------------------+
