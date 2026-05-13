@@ -26,4 +26,4 @@ jobs:
         run: |
           scalingo login --api-token $SCALINGO_API_TOKEN
           scalingo --app ${{ secrets.SCALINGO_STAGING_APP }} git-setup --remote scalingo-staging
-          git push scalingo-staging HEAD:master
+          git push scalingo-staging main:master

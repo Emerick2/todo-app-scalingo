@@ -128,4 +128,4 @@ checkHealth();
 setInterval(checkHealth, 5000);
 ChargerDepuisServeur();
 
-console.log("Déployer avec la version 1.0.3");
+console.log("Déployer avec la version 1.0.4");
