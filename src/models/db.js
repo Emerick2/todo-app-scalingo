@@ -1,12 +1,9 @@
 const { Pool } = require('pg');
 
-const connectionString =
-  process.env.DATABASE_URL || process.env.SCALINGO_POSTGRESQL_URL;
-
 const pool = new Pool({
-  connectionString,
-  ssl: process.env.NODE_ENV === 'production'
-    ? { rejectUnauthorized: false }
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' 
+    ? { rejectUnauthorized: false } 
     : false
 });
 
@@ -24,7 +21,7 @@ const initDatabase = async () => {
   try {
     await query(sql);
   } catch (err) {
-    console.error("Erreur lors de l'initialisation de la base de données :", err);
+    console.error("Erreur l'ors de l'initialisation de la base de données :", err);
     throw err;
   }
 };
