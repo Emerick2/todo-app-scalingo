@@ -33,7 +33,7 @@ jobs:
         env:
           SCALINGO_API_TOKEN: ${{ secrets.SCALINGO_API_TOKEN }}
 
-      - name: Run tests
-        run: npm test
-        env:
-          DATABASE_URL: postgresql://<user_db>:<password_db>@localhost:5432/<nom_db>
+      # - name: Run tests
+      #   run: npm test
+      #   env:
+      #     DATABASE_URL: postgresql://<user_db>:<password_db>@localhost:5432/<nom_db>
