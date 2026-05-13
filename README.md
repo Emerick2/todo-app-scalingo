@@ -21,6 +21,7 @@
 # Adresses des déploiements :
 
 **Staging** : [https://todo-app-staging.osc-fr1.scalingo.io/](https://todo-app-staging.osc-fr1.scalingo.io/)
+**Production** : https://todo-app-armel-staging.osc-fr1.scalingo.io/
 
 # Commandes principales :
 
@@ -73,17 +74,17 @@ Si nous voulons publier une nouvelle version, il faut donc soit le faire manuell
 # Architecture du projet :
 ```
 ┌src
-├──┬controllers : dossier contenant les scripts de contrôle de l'API avec les différents requête SQL exécutables.
-├──┼───todoController.js : script qui contient les différentes requête SQL qui peuvent être envoyer à l'API
-├──┼models : dossier contenant le script qui créé la table de donnée si elle n'existe pas encore.
-├──┼───db.js : créé la base de données si elle n'existe pas.
-├──┼public : dossier contenant les fichiers du site publique que les utilisateurs pourront voire.
-├──┼──┬404.html : page qui apparaît sur le site si une page n'est pas trouvée.
-├──┼──┼index.html : page principale du site depuis lequel l'utilisateur interagiras.
-├──┼──┼script.js : script permettant à la page index de fonctionner correctement.
-├──┼──┴style.css : page de CSS pour rendre la page principale du site jolie.
-├──┼routes : dossier contenants les routes que l'API peut emprunter.
-├──┼api.js : script qui créé et contrôle les fonctionnalités de l'API.
-├──┼app.js : script qui créé et contrôle les fonctionnalités de l'application.
-└──┴serveur.js : script qui ouvre le serveur permettant toutes les interaction avec l'API depuis le site.
+├──┬controllers               # dossier contenant les scripts de contrôle de l'API avec les différents requête SQL exécutables.
+├──┼───todoController.js      # script qui contient les différentes requête SQL qui peuvent être envoyer à l'API
+├──┼models                    # dossier contenant le script qui créé la table de donnée si elle n'existe pas encore.
+├──┼───db.js                  # créé la base de données si elle n'existe pas.
+├──┼public                    # dossier contenant les fichiers du site publique que les utilisateurs pourront voire.
+├──┼──┬404.html               # page qui apparaît sur le site si une page n'est pas trouvée.
+├──┼──┼index.html             # page principale du site depuis lequel l'utilisateur interagiras.
+├──┼──┼script.js              # script permettant à la page index de fonctionner correctement.
+├──┼──┴style.css              # page de CSS pour rendre la page principale du site jolie.
+├──┼routes                    # dossier contenants les routes que l'API peut emprunter.
+├──┼api.js                    # script qui créé et contrôle les fonctionnalités de l'API.
+├──┼app.js                    # script qui créé et contrôle les fonctionnalités de l'application.
+└──┴serveur.js                # script qui ouvre le serveur permettant toutes les interaction avec l'API depuis le site.
 ```
