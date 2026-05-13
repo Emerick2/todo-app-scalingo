@@ -23,5 +23,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Scalingo CLI
+        run: curl -s https://cli-dl.scalingo.com/install | bash
+
+      - name: Ouvre l'API
+        scalingo -a todo-app-staging --region osc-fr1 db-tunnel SCALINGO_POSTGRESQL_URL &
+        sleep 5
+        env:
+          SCALINGO_API_TOKEN: ${{ secrets.SCALINGO_API_TOKEN }}
+
       - name: Run tests
         run: npm test
+        env:
+          DATABASE_URL: postgresql://<user_db>:<password_db>@localhost:5432/<nom_db>
