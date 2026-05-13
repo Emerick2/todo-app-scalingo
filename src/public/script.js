@@ -127,3 +127,5 @@ document.getElementById('ajouterTache').addEventListener('submit', function(e) {
 checkHealth();
 setInterval(checkHealth, 5000);
 ChargerDepuisServeur();
+
+console.log("Déployer avec la version 1.0.0");
