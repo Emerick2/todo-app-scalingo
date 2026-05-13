@@ -24,6 +24,4 @@ jobs:
         env:
           SCALINGO_API_TOKEN: ${{ secrets.SCALINGO_API_TOKEN }}
         run: |
-          scalingo login --api-token $SCALINGO_API_TOKEN
-          scalingo --app ${{ secrets.SCALINGO_STAGING_APP }} git-setup --remote scalingo-staging
-          git push scalingo-staging main --force
+          git push scalingo main:master
