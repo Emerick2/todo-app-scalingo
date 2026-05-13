@@ -20,9 +20,7 @@
 - `git push scalingo main:master` : pour mettre en ligne les modification sur Scaligno.
 
 # Comment on fait un rollback si ça casse :
-- Revenir sur une version antérieur de GitHub.
-- `git push` pour mettre en ligne les modifications.
-- `git push scalingo main:master` : pour mettre en ligne les modification sur Scaligno.
+- `git push scalingo 40b63a6:master --force` : en revenant à un commit plus anciens qui fonctionnait, nous pouvons réaliser un rollback.
 
 # Où trouver les logs en cas de problème
 - Aller sur ce lien pour voir les logs : https://dashboard.scalingo.com/apps/osc-fr1/todo-app-staging/logs
