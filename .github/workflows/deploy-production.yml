@@ -19,9 +19,7 @@ jobs:
 
       - name: Install Scalingo CLI
         run: |
-          curl -O https://cli-dl.scalingo.com/release/scalingo_latest_linux_amd64.tar.gz
-          tar -zxvf scalingo_latest_linux_amd64.tar.gz
-          mv scalingo /usr/local/bin/
+          curl -s https://cli-dl.scalingo.com/install | bash
 
       - name: Deploy to Scalingo Production
         env:
